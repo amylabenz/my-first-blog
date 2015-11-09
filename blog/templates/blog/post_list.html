@@ -1,31 +1,15 @@
-<html>
-    <head>
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <title>Amy's blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Amy's Blog</a></h1>
-        </div>
-        {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaks }}</p>
-        </div>
-    {% endfor %}
-        <div>
-            <p>published: 11.07.2015, 4:30</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Emily Willey is <em>so</em> silly!</p>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <p>published: 11.07.2015, 4:45</p>
-            <h2><a href="">My second post</a></h2>
-            <p>But seriously, <strong>how did Emily get to be <em>so</em> silly?!</strong></p>
-            <p>published: 11.07.2015, 5:00</p>
-        </div>
-    </body>
-</html>
+{% block content %}
+
+
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>published: {{ post.published_date }}</p>
+                            </div>
+                          <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                            <p>{{ post.text|linebreaks }}</p>
+                        </div>
+                    {% endfor %}
+              {% endblock %}
